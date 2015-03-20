@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Info";
+}
+
+@model marantbizSendEmail_Elance_.Models.UserModel
+
+<div class="col-md-12 col-md-offset-5">
+
+    <h1>Other Information</h1>
+
+    <br />
+
+    @using (Html.BeginForm("SendEmail", "Home", FormMethod.Post, new { @class = "form-horizontal", @id = "form-info", @name = "form-info" }))
+    {        
+
+        <div class="form-group">
+            <label class="control-label" for="DateOfBirth">Date of Birth: </label>
+            @Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control datepicker", @placeholder = "Date of Birth" })
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="Country">Country </label>
+            @Html.DropDownListFor(x => x.Country, new List<SelectListItem>() { new SelectListItem { Selected = true, Text = "Select Country", Value = "" } }, new { @class = "bfh-countries form-control", @data_country = "US", @data_blank = "false" })
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="State">State </label>
+            @Html.DropDownListFor(x => x.State, new List<SelectListItem>() { new SelectListItem { Selected = true, Text = "Select State", Value = "" } }, new { @class = "bfh-states form-control", @data_country = "Country", @data_blank = "false" })            
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label" for="City">City </label>
+            @Html.TextBoxFor(x => x.City, new { @class = "form-control", @placeholder = "City" })
+        </div>
+      
+
+        @Html.HiddenFor(x => x.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+        @Html.HiddenFor(x => x.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+        @Html.HiddenFor(x => x.Email, new { @class = "form-control", @placeholder = "Email" })
+        
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+
+    }
+
+</div>
+
+
+
+@section scripts
+{    
+    <script src="~/Scripts/bootstrap-formhelpers-countries.en_US.js"></script>
+    <script src="~/Scripts/bootstrap-formhelpers-states.en_US.js"></script>
+    <script src="~/Scripts/bootstrap-formhelpers-countries.js"></script>    
+    <script src="~/Scripts/bootstrap-formhelpers-states.js"></script>
+
+    <script type="text/javascript">
+        
+        $(document).ready(function () {
+
+            $('.datepicker').datepicker({
+                format: 'mm/dd/yyyy'
+            });           
+
+        });
+
+    </script>
+
+}

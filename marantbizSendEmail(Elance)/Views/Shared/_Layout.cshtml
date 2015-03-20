@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>    
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/datepicker3.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-formhelpers.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    
+    <div class="row">                            
+            @RenderBody()     
+    </div>
+  
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrapValidator.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+            $("form[name='form-info']").bootstrapValidator({
+                live: 'enabled',
+                message: 'Please fill out this field.',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    FirstName: {
+                        validators: {
+                            notEmpty: {
+                                message: 'First Name is required and cannot be empty'
+                            },
+                            stringLength: {
+                                max: 50,
+                                message: "First Name can't exceed 50 characters long"
+                            }
+                        }
+                    },
+                    LastName: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Last Name is required and cannot be empty'
+                            },
+                            stringLength: {
+                                max: 50,
+                                message: "Last Name can't exceed 50 characters long"
+                            }
+                        }
+                    },
+                    Email: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Email is required and cannot be empty'
+                            },
+                            stringLength: {
+                                max: 50,
+                                message: "Email can't exceed 50 characters long "
+                            },
+                            emailAddress: {
+                                message: 'The input is not a valid email address'
+                            }
+                        }
+                    },                   
+                    Country: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Country is required and cannot be empty'
+                            }
+                        }
+                    },
+                    City: {
+                        validators: {
+                            notEmpty: {
+                                message: 'City is required and cannot be empty'
+                            }
+                        }
+                    },
+                    State: {
+                        validators: {
+                            notEmpty: {
+                                message: 'State is required and cannot be empty'
+                            }
+                        }
+                    }
+                },
+                onError: function (e) {
+                    // Do something ...
+                },
+                onSuccess: function (e) {
+
+                    var content = "<div class='form-group'><div id='loader' class='col-sm-12 margin-b' style='text-align: center;'><img alt='Sending Inquiry' src='/images/loading.gif' title='Sending Inquiry' style='height:30px; width: auto' /> Sending Inquiry...</div></div>";
+
+                    $("form[name='AffiliateContactUsForm'] .form-group:last").before(content);
+
+                }
+            });
+
+        });
+
+    </script>
+
+    @RenderSection("scripts", false)
+    
+    
+
+</body>
+</html>

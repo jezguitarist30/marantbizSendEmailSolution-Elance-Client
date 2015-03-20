@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@model marantbizSendEmail_Elance_.Models.UserModel
+
+<div class="col-md-12 col-md-offset-5">
+    
+    <h1>Personal Information</h1>
+
+    <br />
+
+    @using (Html.BeginForm("Info", "Home", FormMethod.Post, new { @class = "form-horizontal", @id = "form-info", @name = "form-info" }))
+    {
+      
+        <div class="form-group">
+            <label class="control-label" for="FirstName">First Name</label>
+            @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="LastName">Last Name</label>
+            @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="Email">Email</label>
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Email" })
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+
+    }
+
+    
+</div>
+
